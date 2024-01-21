@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Luxanna",
+        "email": "demacia@gmail.com",
+        "password": "aBc123!!"
+    },
+    {
+        "name": "Caitlyn",
+        "email": "piltover@gmail.com",
+        "password": "iHeartVi01!"
+    },
+    {
+        "name": "Vladimir",
+        "email": "bl00dlord@gmail.com",
+        "password": "blood4Days!"
+    },
+    {
+        "name": "Zed",
+        "email": "edgyshadowguy@gmail.com",
+        "password": "assassin101!"
+    }
+]
