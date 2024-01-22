@@ -16,6 +16,9 @@ router.get('/', async (req, res) => {
                     attributes: ['comment']
                 }
             ],
+            order: [
+                ["created", "DESC"]
+            ]
         });
     
         const blogPosts = postData.map((blogPost) => blogPost.get({ plain: true }));
@@ -44,6 +47,32 @@ router.get('/login', async (req, res) => {
     }
     
     res.render('login');
+});
+
+router.get("/dashboard", withAuth, async (req, res) => {
+    try {
+        const userData = await User.findByPk(req.session.user_id, {
+            attributes: { exclude: ["password"]},
+            include: [
+                {
+                    model: BlogPost,
+                    include: [ User ],
+                }
+            ],
+            order: [
+                [BlogPost, "created", "DESC"]
+            ]
+        });
+
+        const user = userData.get({ plain: true });
+        console.log(user)
+
+        res.render("dashboard", {
+            user
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
 });
 
 module.exports = router;
