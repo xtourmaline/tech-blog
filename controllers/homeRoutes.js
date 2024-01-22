@@ -20,10 +20,16 @@ router.get('/', async (req, res) => {
     
         const blogPosts = postData.map((blogPost) => blogPost.get({ plain: true }));
 
+        let user = {};
+        if (req.session.logged_in) {
+            user = (await User.findByPk(req.session.user_id)).get({ plain: true });
+        }
+
         // Pass serialized data and session flag into template
         res.render('homepage', { 
             blogPosts, 
-            logged_in: req.session.logged_in 
+            logged_in: req.session.logged_in,
+            user: user
         });
     } catch (err) {
         res.status(500).json(err);
