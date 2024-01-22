@@ -76,4 +76,20 @@ router.get("/dashboard", withAuth, async (req, res) => {
     }
 });
 
+router.get('/create', async (req, res) => {
+    try {
+        let user = {};
+        if (req.session.logged_in) {
+            user = (await User.findByPk(req.session.user_id)).get({ plain: true });
+        }
+
+        res.render("create", {
+            logged_in: req.session.logged_in,
+            user: user
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 module.exports = router;
