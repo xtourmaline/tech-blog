@@ -1,43 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Tech Blog</title>
-        <link rel="stylesheet" href="/css/style.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Blog</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
 
-    <body>
-        <div class="flex-column justify-space-around">
-            <header class="display-flex justify-space-between align-center p-2">
-                <h1>
-                    <a href="/">Tech Blog</a>
-                </h1>
+<body>
+    <div class="flex-column justify-space-around">
+        <header class="display-flex justify-space-between align-center p-2">
 
-                <nav>
-                    <!-- Conditionally render login or logout links -->
-                    <a href="/">Home</a>
-                    <a href="/dashboard">Dashboard</a>
-                    {{#if logged_in}}
-                    <a href="/logout">Logout</a>
-                    {{else}}
-                    <a href="/login">Login</a>
-                    {{/if}}
-                </nav>
-                
-            </header>
-            
-            <main class="container container-fluid mt-5">
-                <!-- Render the sub layout -->
-                {{{ body }}}
-            </main>
-        </div>
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="/">
+                        <h1 class="title is-4">🖥️ Tech Blog</h1>
+                    </a>
 
-        <!-- Render script for logged in users only -->
-        {{#if logged_in}}
-        <script src="/js/logout.js"></script>
-        {{/if}}
-    </body>
+                    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                        data-target="navbarBasicExample">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+
+                <div id="navbarBasicExample" class="navbar-menu">
+                    <div class="navbar-start">
+                        <a class="navbar-item" href="/">
+                            Home
+                        </a>
+
+                        <a class="navbar-item" href="/dashboard">
+                            Dashboard
+                        </a>
+                    </div>
+
+                    <div class="navbar-end">
+                        <div class="navbar-item">
+                            <div class="buttons">
+                                
+
+                                {{#if logged_in}}
+                                <a class="button is-light" href="/logout">Logout</a>
+                                {{else}}
+                                <a class="button is-link">
+                                    <strong>Sign up</strong>
+                                </a>
+                                <a class="button is-light">
+                                    Log in
+                                </a>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main class="container container-fluid mt-5">
+            <!-- Render the sub layout -->
+            {{{ body }}}
+        </main>
+    </div>
+
+    <!-- Render script for logged in users only -->
+    <script src="/js/navbar.js"></script>
+    {{#if logged_in}}
+    <script src="/js/logout.js"></script>
+    {{/if}}
+</body>
 
 </html>

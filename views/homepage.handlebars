@@ -1,5 +1,16 @@
 <div>
     {{#each blogPosts as |blogPost|}}
-        <p>{{blogPost.content}}</p>
+    <div class="card">
+        <header class="card-header">
+            <a href="/blogPost/{{blogPost.id}}">{{blogPost.title}}</a>
+        </header>
+        <p class="card-content">
+            {{blogPost.content}}
+        </p>
+        <p class="card-footer">
+            Created on {{format_date blogPost.created}} by {{blogPost.user.name}}
+        </p>
+    </div>
+    <br>
     {{/each}}
 </div>
