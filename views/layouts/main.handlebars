@@ -44,12 +44,11 @@
                                 
 
                                 {{#if logged_in}}
-                                <a class="button is-light" href="/logout">Logout</a>
-                                {{else}}
-                                <a class="button is-link">
-                                    <strong>Sign up</strong>
+                                <a class="button is-light" href="/logout">
+                                    Logout
                                 </a>
-                                <a class="button is-light">
+                                {{else}}
+                                <a class="button is-info" href="/login">
                                     Log in
                                 </a>
                                 {{/if}}
