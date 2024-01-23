@@ -92,4 +92,27 @@ router.get('/create', async (req, res) => {
     }
 });
 
+router.get("/edit/:id", withAuth, async (req, res) => {
+    try {
+        let user = {};
+            if (req.session.logged_in) {
+                user = (await User.findByPk(req.session.user_id)).get({ plain: true });
+            }
+        
+        const blogPostData = await BlogPost.findByPk(req.params.id, {
+            attributes: { include: ["id", "title", "content"] }
+        });
+
+        const blogPost = blogPostData.get({plain: true});
+
+        res.render("edit", {
+            user: user,
+            blogPost,
+            logged_in: req.session.logged_in
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 module.exports = router;

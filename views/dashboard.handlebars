@@ -11,7 +11,12 @@
     <div class="card">
         <header class="card-header">
             <a href="/blogPost/{{blogPost.id}}">{{blogPost.title}}</a>
-            <button class="button is-warning is-light is-small ml-2">✏️</button>
+
+            {{!-- edit button --}}
+            <a href="/edit/{{blogPost.id}}">
+                <button class="button is-warning is-light is-small ml-2">✏️</button>
+            </a>
+            {{!-- delete button --}}
             <a>
                 <button class="button is-danger is-light is-small ml-2" onclick="deleteBlogPost({{blogPost.id}})">🗑</button>
             </a>
