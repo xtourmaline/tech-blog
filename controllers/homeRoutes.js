@@ -76,7 +76,7 @@ router.get("/dashboard", withAuth, async (req, res) => {
     }
 });
 
-router.get('/create', async (req, res) => {
+router.get('/create', withAuth, async (req, res) => {
     try {
         let user = {};
         if (req.session.logged_in) {
@@ -113,6 +113,38 @@ router.get("/edit/:id", withAuth, async (req, res) => {
     } catch (err) {
         res.status(500).json(err);
     }
+});
+
+router.get("/blogpost/:id", withAuth, async (req, res) => {
+    let user = {};
+        if (req.session.logged_in) {
+            user = (await User.findByPk(req.session.user_id)).get({ plain: true });
+        }
+    
+    const blogPostData = await BlogPost.findByPk(req.params.id, {
+        include: [
+            {
+                model: Comment,
+                include: [ User ]
+            },
+            {
+                model: User
+            }
+        ],
+        order: [
+            [Comment, "created", "DESC"]
+        ]
+    });
+
+    const blogPost = blogPostData.get({ plain: true });
+
+    console.log(blogPost);
+
+    res.render("blogpost", {
+        blogPost,
+        user: user,
+        logged_in: req.session.logged_in,
+    });
 });
 
 module.exports = router;

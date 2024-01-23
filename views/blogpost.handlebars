@@ -1,0 +1,45 @@
+<div>
+    <div class="card grabID" id="{{blogPost.id}}">
+        <header class="card-header">
+            <p>{{blogPost.title}}</p>
+        </header>
+        <p class="card-content">
+            {{blogPost.content}}
+        </p>
+        <p class="card-footer">
+            Created on {{format_date blogPost.created}} by {{blogPost.user.name}}
+        </p>
+    </div>
+    <br>
+</div>
+
+<div class="box">
+    <form class="form">
+        <div class="field">
+            <textarea class="textarea" type="text" rows="5" id="comment-create" placeholder="Comment"></textarea>
+        </div>
+        <br>
+
+        <div class="field">
+            <a class="button is-info" id="comment" type="click">
+                Post Comment
+            </a>
+        </div>
+    </form>
+</div>
+
+<div>
+    {{#each blogPost.Comments}}
+    <div class="card">
+        <p class="card-content">
+            {{this.comment}}
+        </p>
+        <p class="card-footer">
+            Created on {{format_date this.created}} by {{this.user.name}}
+        </p>
+    </div>
+    <br>
+    {{/each}}
+</div>
+
+<script src="/js/comment.js"></script>
