@@ -1,13 +1,13 @@
 <div>
     {{#each blogPosts as |blogPost|}}
     <div class="card">
-        <header class="card-header">
-            <a href="/blogPost/{{blogPost.id}}">{{blogPost.title}}</a>
+        <header class="card-header p-2">
+            <a href="/blogPost/{{blogPost.id}}" class="is-size-4">{{blogPost.title}}</a>
         </header>
         <p class="card-content">
             {{blogPost.content}}
         </p>
-        <p class="card-footer">
+        <p class="card-footer p-2">
             Created on {{format_date blogPost.created}} by {{blogPost.user.name}}
         </p>
     </div>

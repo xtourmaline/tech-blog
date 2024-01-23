@@ -9,7 +9,7 @@
 <div>
     {{#each user.blogPosts as |blogPost|}}
     <div class="card">
-        <header class="card-header">
+        <header class="card-header p-2">
             <a href="/blogpost/{{blogPost.id}}">{{blogPost.title}}</a>
 
             {{!-- edit button --}}
@@ -24,7 +24,7 @@
         <p class="card-content">
             {{blogPost.content}}
         </p>
-        <p class="card-footer">
+        <p class="card-footer p-2">
             Created on {{format_date blogPost.created}} by {{user.name}}
         </p>
     </div>
