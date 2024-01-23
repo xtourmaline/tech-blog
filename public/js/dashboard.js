@@ -4,7 +4,5 @@ async function deleteBlogPost(id) {
         headers: { 'Content-Type': 'application/json' },
     });
 
-    console.log(response);
-
     location.reload();
 }
